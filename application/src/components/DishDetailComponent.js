@@ -3,12 +3,21 @@ import {Card,CardImg,CardText,CardTitle} from 'reactstrap';
 
 class DishDetail extends Component{
 
-    constructor(props){
-        super(props)
+    
+
+    componentDidMount()
+        {
+            console.log("DishDetail Component componentDidMount invoked")
+        }
+
+    componentDidUpdate(){
+        console.log("DishDetail Cmponent componentDidUpdate invoked ")
     }
+    
 
     render()
     {
+        console.log("DishDetail Component render invoked")
         if(this.props.dish!=null)
         {
             const comment_section=this.props.dish.comments.map((comment)=>{
@@ -23,7 +32,7 @@ class DishDetail extends Component{
                 )
             })
             return(
-                <div class="row">
+                <div className="row">
                 <div className="col-12 col-md-5 m-1">
                     <Card>
                         <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
@@ -33,7 +42,7 @@ class DishDetail extends Component{
                 </div>
                 <div className="col-12 col-md-5 m-1">
                     <Card>
-                        <CardTitle><h3 style={{"padding-left":"1em"}} >Comments</h3></CardTitle>
+                        <CardTitle><h3 style={{"paddingLeft":"1em"}} >Comments</h3></CardTitle>
                         <div className="comment" >{comment_section}</div>
                     </Card>
                 </div>
