@@ -1,0 +1,12 @@
+.comment_section{
+  display:flex;
+}
+
+.comment{
+  display:flex;
+  flex-direction: column;
+}
+
+.padding_left{
+  padding-left: 2em;
+}
