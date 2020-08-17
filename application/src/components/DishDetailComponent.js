@@ -12,12 +12,13 @@ class DishDetail extends Component{
         if(this.props.dish!=null)
         {
             const comment_section=this.props.dish.comments.map((comment)=>{
-                const date=new Date(comment.date)
-
+                // ISO Date to Long Date
+                // const date=new Date(comment.date)
+                // date.toDateString().slice(4,)
                 return(
                     <div key={comment.id} className="padding_left">
                         <p>{comment.comment}</p><br />
-                <p>--{comment.author},{date.toDateString().slice(4,)}</p>
+                <p>--{comment.author},{new Intl.DateTimeFormat('en-US',{year:'numeric',month:'short',date:'2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                     </div>
                 )
             })
