@@ -1,8 +1,8 @@
 import React from 'react'
-import {Card,CardImg,CardText,CardTitle} from 'reactstrap';
-
-    const renderComments=(dish)=>{
-        const comments=dish.comments.map((comment)=>{
+import {Card,CardImg,CardText,CardTitle,CardBody,Breadcrumb,BreadcrumbItem} from 'reactstrap';
+import {Link} from 'react-router-dom'
+    const RenderComments=(props)=>{
+        const comments=props.comments.map((comment)=>{
             // ISO Date to Long Date
             // const date=new Date(comment.date)
             // date.toDateString().slice(4,)
@@ -13,29 +13,54 @@ import {Card,CardImg,CardText,CardTitle} from 'reactstrap';
                 </div>
             )
         })
-        return comments
+        return (
+            <div className="col-12 col-md-5 m-1">
+            <Card>
+                <CardTitle>Comments</CardTitle>
+                <CardBody>{comments}</CardBody>
+            </Card>
+            </div>
+        )
     }
 
-    function RenderDish({dish})
+    function RenderDish(props){
+        return(
+            <div className="col-12 col-md-5 m-1">
+                <Card>
+                    <CardImg width="100%" src={props.dish.image} alt={props.dish.name} />
+                    <CardTitle><h3>{props.dish.name}</h3></CardTitle>
+                    <CardText>{props.dish.description}</CardText>
+                </Card>
+            </div>
+        )
+    }
+    
+
+    function DishDetail(props)
     {
-        if(dish!=null)
+        if(props.dish!=null)
         {
             
             return(
-                <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
-                        <CardTitle><h3>{dish.name}</h3></CardTitle>
-                        <CardText>{dish.description} </CardText>
-                    </Card>
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <Card>
-                        <CardTitle><h3 style={{"paddingLeft":"1em"}} >Comments</h3></CardTitle>
-                        <div className="comment" >{renderComments(dish)}</div>
-                    </Card>
-                </div>
+                <div className="container">
+                        <div className="row">
+                            <Breadcrumb>
+                            <BreadcrumbItem>
+                            <Link to='/home'>Home</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem active>Menu</BreadcrumbItem>
+                            </Breadcrumb>
+                            <div className="col-12">
+                                <h3>Menu</h3>
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <RenderDish dish={props.dish} />
+                            <RenderComments comments={props.comments} />
+
+                        </div>
                 </div>
             )
         }
@@ -48,4 +73,4 @@ import {Card,CardImg,CardText,CardTitle} from 'reactstrap';
 
 
 
-export default RenderDish
+export default DishDetail;
