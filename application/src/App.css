@@ -44,3 +44,13 @@ address{
 .navbar-dark {
   background-color: #512DA8;
 }
+
+.sub_comment{
+  color: gray;
+  background-color: white;
+}
+
+.sub_comment:hover{
+  color:white;
+  background-color: gray;
+}
